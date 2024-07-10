@@ -107,7 +107,8 @@ class Client {
 
     this.request = request.defaults({
       agentOptions: this.agentOptions,
-      baseUrl: `${this.ssl.enabled ? 'https' : 'http'}://${this.host}:${this.port}`,
+      baseUrl: `${this.host.startsWith('http') ? this.host : `${this.ssl.enabled ? 'https' : 'http'}://${this.host}:${this.port}`}`,
+      // baseUrl: `${this.ssl.enabled ? 'https' : 'http'}://${this.host}:${this.port}`,
       strictSSL: this.ssl.strict,
       timeout: this.timeout
     });
