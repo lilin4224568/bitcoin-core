@@ -156,7 +156,7 @@ class Client {
     }
 
     return this.parser.rpc(await this.request.postAsync({
-      auth: _.pickBy(this.auth, _.identity),
+      auth: this.auth ? _.pickBy(this.auth, _.identity) : undefined,
       body: JSON.stringify(body),
       uri
     }));
